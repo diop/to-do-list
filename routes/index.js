@@ -8,9 +8,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/api/todos', db.getAllTasks);
-router.get('/api/todos/:id', db.getSingleTask);
-router.post('api/todos', db.createTask);
-router.put('/api/todos', db.updatePuppy);
+router.get('api/todos/:id', db.getSingleTask);
+router.post('api//todos', db.createTask);
+router.put('/api/todos', db.updateTask);
 router.delete('/api/todos/:id', db.removeTask);
 
 module.exports = router;

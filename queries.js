@@ -6,7 +6,7 @@ var options = {
 
 var pgp = require('pg-promise')(options);
 var connectionString = 'postgres://localhost:5432/todos';
-var ddb = pgp(connectionString);
+var db = pgp(connectionString);
 
 // Query functions
 
@@ -26,8 +26,8 @@ function getAllTasks(req, res, next) {
 }
 
 function getSingleTask(req, res, next) {
-    var tastID = parseInt(req.params.id);
-    db.one('select * from items where id = $1', itemID)
+    var taskID = parseInt(req.params.id);
+    db.one('select * from items where id = $1', taskID)
         .then(function (data){
             res.status(200)
                 .json({
@@ -43,7 +43,7 @@ function getSingleTask(req, res, next) {
 
 }
 
-function createTask(req, re, next) {
+function createTask(req, res, next) {
     db.none('insert into items(task, completed, created_at, updated_at)' +
         'values(${task}), ${completed}, ${created_at}, ${updated_at}',
       req.body)
@@ -69,7 +69,7 @@ function updateTask(req, res, next) {
                     message: 'Updated task'
                 });
         })
-        .catch(fucntion (err){
+        .catch(function (err){
             return next(err);
         });
 }
@@ -77,11 +77,11 @@ function updateTask(req, res, next) {
 function removeTask(req, res, next) {
     var taskID = parseInt(req.param.id);
     db.result('delete from pups where id = $1', taskID)
-        .then(function (result {
+        .then(function (result) {
             /* jshint ignore: start */
             res.status(200)
                 .json({
-                    status: 'success'
+                    status: 'success',
                     message: 'Removed ${result.rowCount} task'
                 });
             /* jshint ignore:end */
@@ -91,9 +91,9 @@ function removeTask(req, res, next) {
         });
 }
 
-module.export = {
-    getAllTasks: getAllTasks,
-    getSingleTask: getSingleTask,
+module.exports = {
+   getAllTasks: getAllTasks,
+ getSingleTask: getSingleTask,
     createTask: createTask,
     updateTask: updateTask,
     removeTask: removeTask
