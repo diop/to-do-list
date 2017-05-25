@@ -1,16 +1,17 @@
 DROP DATABASE IF EXISTS todos;
 CREATE DATABASE todos;
 
-\c todos
+\c todos;
 
-DROP TABLE IF EXISTS items;
 CREATE TABLE items (
     ID SERIAL PRIMARY KEY,
     task VARCHAR(40) NOT NULL,
-    completed BOOLEAN DEFAULT false,
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP
+    isComplete BOOLEAN DEFAULT false
 );
 
-INSERT INTO items (task, completed, created_at, updated_at)
-    VALUES ('Meditation', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+INSERT INTO items (task, isComplete) VALUES ('Meditation', false);
+INSERT INTO items (task, isComplete) VALUES ('Consume 30 Grams of Protein', false);
+INSERT INTO items (task, isComplete) VALUES ('Take a Cold Shower', false);
+INSERT INTO items (task, isComplete) VALUES ('Listen to/Read Uplifting Content', false);
+INSERT INTO items (task, isComplete) VALUES ('Review Your Life Vision', false);
+INSERT INTO items (task, isComplete) VALUES ('Do at Least One Thing Toward Long-Term Goals', false);

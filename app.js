@@ -32,7 +32,8 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handler
+// error handlers
+
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -45,11 +46,6 @@ if (app.get('env') === 'development') {
     })
 }
 
-//set locals, only providing error in development
-// res.locals.message = err.message;
-// res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-//render the error page
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {

@@ -3,11 +3,11 @@ var router = express.Router();
 var db = require('../queries');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', db.getAllTasks);
 
-router.get('/api/todos', db.getAllTasks);
+router.get('/api/todos', function(req, res, next){
+    db.getAllTasks();
+});
 router.get('api/todos/:id', db.getSingleTask);
 router.post('api//todos', db.createTask);
 router.put('/api/todos', db.updateTask);

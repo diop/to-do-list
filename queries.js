@@ -5,7 +5,7 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432/todos';
+var connectionString = 'postgres://postgres@localhost:5432/todos';
 var db = pgp(connectionString);
 
 // Query functions
@@ -14,7 +14,7 @@ function getAllTasks(req, res, next) {
     db.any('select * from items')
         .then(function (data) {
             res.status(200)
-                .json({
+                .render('index', {
                     status: 'success',
                     data: data,
                     message: 'Retrieved ALL tasks'
@@ -39,13 +39,13 @@ function getSingleTask(req, res, next) {
         .catch(function (err){
             return next(err);
         });
-
-
 }
 
 function createTask(req, res, next) {
-    db.none('insert into items(task, completed, created_at, updated_at)' +
-        'values(${task}), ${completed}, ${created_at}, ${updated_at}',
+    const task = request.body
+
+    db.none('insert into items(task, isComplete)' +
+        'values(${task}), ${completed}',
       req.body)
       .then(function () {
           res.status(200)
@@ -60,8 +60,8 @@ function createTask(req, res, next) {
 }
 
 function updateTask(req, res, next) {
-    db.none('update items set task=$1, completed=$2, created_at=$3, updated_at=$4 where id=$5',
-        [req.body.task, req.body.completed, req.body.created_at, req.body.updated_at])
+    db.none('update items set task=$1, isComplete=$2 where id=$3',
+        [req.body.task, req.body.completed, parseInt(req.params.id)])
         .then(function(){
             res.status(200)
                 .json({
@@ -76,7 +76,7 @@ function updateTask(req, res, next) {
 
 function removeTask(req, res, next) {
     var taskID = parseInt(req.param.id);
-    db.result('delete from pups where id = $1', taskID)
+    db.result('delete from items where id = $1', taskID)
         .then(function (result) {
             /* jshint ignore: start */
             res.status(200)
