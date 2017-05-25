@@ -9,7 +9,9 @@ CREATE TABLE items (
     isComplete BOOLEAN DEFAULT false
 );
 
+INSERT INTO items (task, isComplete) VALUES ('Get A Healthy 7+ Hours of Sleep', false);
 INSERT INTO items (task, isComplete) VALUES ('Meditation', false);
+INSERT INTO items (task, isComplete) VALUES ('Hard Physical Activity', false);
 INSERT INTO items (task, isComplete) VALUES ('Consume 30 Grams of Protein', false);
 INSERT INTO items (task, isComplete) VALUES ('Take a Cold Shower', false);
 INSERT INTO items (task, isComplete) VALUES ('Listen to/Read Uplifting Content', false);
