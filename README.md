@@ -15,6 +15,7 @@ To Do App based on Benjamin P Hardy's popular Medium post:
 
 ## Instructions
 - clone repo && cd to it
+- psql -f schema.sql
 - npm install
 - npm start
 - browse to http://localhost:3000/
@@ -22,7 +23,7 @@ To Do App based on Benjamin P Hardy's popular Medium post:
 ## User Stories
 As a user
 
-- [] I can create tasks.
-- [] I can remove tasks.
-- [] I can check tasks off as completed.
-- [] I can update tasks.
+- [ ] I can create tasks.
+- [ ] I can remove tasks.
+- [ ] I can check tasks off as completed.
+- [ ] I can update tasks.
