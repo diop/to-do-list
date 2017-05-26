@@ -22,7 +22,7 @@ To Do App based on Benjamin P Hardy's popular Medium post:
 ## User Stories
 As a user
 
-- [X] I can create tasks.
-- [X] I can remove tasks.
-- [X] I can check tasks off as completed.
-- [X] I can update tasks.
+- [] I can create tasks.
+- [] I can remove tasks.
+- [] I can check tasks off as completed.
+- [] I can update tasks.
