@@ -1,12 +1,13 @@
 # To Do List
 ## Description
 To Do App based on Benjamin P Hardy's popular Medium post:
-[8 things to do before 8am](https://themission.co/8-things-every-person-should-do-before-8-a-m-cc0233e15c8d).
+[8 Things Every Person Should Do Before 8 A.M.](https://themission.co/8-things-every-person-should-do-before-8-a-m-cc0233e15c8d).
 
 ## Instructions
-- Clone repo && cd to it
+- clone repo && cd to it
 - npm install
 - npm start
+- browse to http://localhost:3000/
 
 ## User Stories
 As a user
