@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= Title
+  p Things To Do Before 8AM
+  p #{status} #{message}
+
+  for item in data
+    p=item.task

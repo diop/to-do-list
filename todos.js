@@ -21,19 +21,20 @@ const createTask = (task, isComplete) => {
 }
 
 const updateTask = (id, task, isComplete) => {
-    return db.none('UPDATE items SET task=$2, completed=$3 WHERE id=$1')
+    return db.none('UPDATE items SET task=$2, isComplete=$3 WHERE id=$1')
 }
 
 const removeTask = (id) => {
     return db.none('DELETE FROM tasks WHERE id=${id}')
 }
 
-const toggleComplete = (id, task, isComplete) => {
-    return db.any('')
+const toggleComplete = (id) => {
+    return db.any('UPDATE tasks SET isCompleted=true WHERE id = ${id}')
 }
 
-const toggleIncomplete = (id, task, isComplete) => {
-    return db.any('')
+const toggleIncomplete = (id) => {
+    return db.any('UPDATE projects SET isCompleted=false WHERE id = ${id}')
+
 }
 
 module.exports = {

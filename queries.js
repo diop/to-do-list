@@ -1,12 +1,12 @@
-var promise = require('bluebird');
+const  promise = require('bluebird');
 
-var options = {
+const  options = {
     promiseLib: promise
 };
 
-var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://postgres@localhost:5432/todos';
-var db = pgp(connectionString);
+const  pgp = require('pg-promise')(options);
+const  connectionString = 'postgres://postgres@localhost:5432/todos';
+const  db = pgp(connectionString);
 
 // Query functions
 
@@ -15,7 +15,7 @@ function getAllTasks(req, res, next) {
         .then(function (data) {
             res.status(200)
                 .render('index', {
-                    status: 'success',
+                    status: 'Success - ',
                     data: data,
                     message: 'Retrieved ALL tasks'
                 });
@@ -25,8 +25,8 @@ function getAllTasks(req, res, next) {
         });
 }
 
-function getSingleTask(req, res, next) {
-    var taskID = parseInt(req.params.id);
+function getTaskById(req, res, next) {
+    const  taskID = parseInt(req.params.id);
     db.one('select * from items where id = $1', taskID)
         .then(function (data){
             res.status(200)
@@ -75,8 +75,8 @@ function updateTask(req, res, next) {
 }
 
 function removeTask(req, res, next) {
-    var taskID = parseInt(req.param.id);
-    db.result('delete from items where id = $1', taskID)
+    const  taskID = parseInt(req.param.id);
+    db.result('delete from items where id = ${taskID}')
         .then(function (result) {
             /* jshint ignore: start */
             res.status(200)
@@ -93,7 +93,7 @@ function removeTask(req, res, next) {
 
 module.exports = {
    getAllTasks: getAllTasks,
- getSingleTask: getSingleTask,
+ getTaskById: getTaskById,
     createTask: createTask,
     updateTask: updateTask,
     removeTask: removeTask
